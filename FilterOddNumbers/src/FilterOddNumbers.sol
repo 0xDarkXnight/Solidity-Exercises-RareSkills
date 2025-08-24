@@ -10,11 +10,25 @@ contract FilterOddNumbers {
               you need to count the even numbers then declare an array of that size.
     */
 
-    function filterOdd(uint256[] memory _arr)
-        public
-        view
-        returns (uint256[] memory)
-    {
-        // your code here
+    function filterOdd(
+        uint256[] memory _arr
+    ) public pure returns (uint256[] memory) {
+        uint256 countEven = 0;
+        for (uint256 i = 0; i < _arr.length; i++) {
+            if (_arr[i] % 2 == 0) {
+                countEven++;
+            }
+        }
+
+        uint256[] memory _evenArr = new uint256[](countEven);
+
+        uint256 index = 0;
+        for (uint256 i = 0; i < _arr.length; i++) {
+            if (_arr[i] % 2 == 0) {
+                _evenArr[index] = _arr[i];
+                index++;
+            }
+        }
+        return _evenArr;
     }
 }
